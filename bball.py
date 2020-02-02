@@ -1,5 +1,6 @@
 import sys
 import pygame
+from bar import Bar
 
 class BouncingBall:
     """Overall class to manage game assets and behavior"""
@@ -11,6 +12,7 @@ class BouncingBall:
         self.screen = pygame.display.set_mode((1200,800))
         self.bg_color = (0,0,255)
         pygame.display.set_caption("Bouncing Ball")
+        self.bar = Bar(self)
 
     def run_game(self):
         """Main game loop"""
@@ -22,6 +24,7 @@ class BouncingBall:
 
             # Redraw screen
             self.screen.fill(self.bg_color)
+            self.bar.blitme()
             pygame.display.flip()
 
 if __name__ == '__main__':
