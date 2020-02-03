@@ -18,6 +18,7 @@ class BouncingBall:
         """Main game loop"""
         while True:
             self._check_events()
+            self.bar.update()
             self._update_screen()
 
     def _check_events(self):
@@ -28,7 +29,10 @@ class BouncingBall:
             # Moving right:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
-                    self.bar.rect.x += 1
+                    self.bar.moving_right = True
+            elif event.type == pygame.KEYUP:
+                self.bar.moving_right = False
+
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
