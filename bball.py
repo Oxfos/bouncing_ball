@@ -25,6 +25,10 @@ class BouncingBall:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            # Moving right:
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    self.bar.rect.x += 1
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
