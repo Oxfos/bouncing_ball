@@ -17,15 +17,21 @@ class BouncingBall:
     def run_game(self):
         """Main game loop"""
         while True:
-            # Check for keyboard and mouse input
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
+            self._check_events()
+            self._update_screen()
 
-            # Redraw screen
-            self.screen.fill(self.bg_color)
-            self.bar.blitme()
-            pygame.display.flip()
+    def _check_events(self):
+        """Respond to keypresses and mouse events."""
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+    def _update_screen(self):
+        """Update images on the screen, and flip to the new screen."""
+        self.screen.fill(self.bg_color)
+        self.bar.blitme()
+        pygame.display.flip()
+
 
 if __name__ == '__main__':
     # Make game instance + run game.
