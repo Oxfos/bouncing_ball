@@ -19,7 +19,7 @@ class BouncingBall:
         """Main game loop"""
         while True:
             self._check_events()
-            self.bar.update()
+            self.bar.update() # implements movement depending on movement flag
             self._update_screen()
 
     def _check_events(self):
@@ -27,12 +27,13 @@ class BouncingBall:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            # Moving right:
+            # Pressing arrow keys for movement:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RIGHT:
                     self.bar.moving_right = True
                 elif event.key == pygame.K_LEFT:
                     self.bar.moving_left = True
+            # Releasing arrow keys:
             elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_RIGHT:
                     self.bar.moving_right = False
