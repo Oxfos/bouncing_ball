@@ -8,6 +8,7 @@ class Bar:
         self.screen = bb_game.screen
         self.screen_rect = bb_game.screen.get_rect()
         self.moving_right = False
+        self.moving_left = False
 
         # Load the bar image and get its rect.
         self.image = pygame.image.load('images/bar.bmp')
@@ -19,6 +20,8 @@ class Bar:
     def update(self):
         if self.moving_right:
             self.rect.x += 1
+        if self.moving_left:
+            self.rect.x -= 1
 
     def blitme(self):
         """Draw the ship at its current location."""
