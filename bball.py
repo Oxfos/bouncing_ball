@@ -1,5 +1,6 @@
 import sys
 import pygame
+from settings import Settings
 from bar import Bar
 
 class BouncingBall:
@@ -8,9 +9,9 @@ class BouncingBall:
     def __init__(self):
         """Initialize the game, and create game resources"""
         pygame.init()
-
-        self.screen = pygame.display.set_mode((1200,800))
-        self.bg_color = (0,0,255)
+        self.settings = Settings()
+        self.screen = pygame.display.set_mode(
+            (self.settings.screen_width, self.settings.screen_height))
         pygame.display.set_caption("Bouncing Ball")
         self.bar = Bar(self)
 
@@ -41,7 +42,7 @@ class BouncingBall:
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
-        self.screen.fill(self.bg_color)
+        self.screen.fill(self.settings.bg_color)
         self.bar.blitme()
         pygame.display.flip()
 
