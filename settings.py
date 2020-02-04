@@ -10,4 +10,4 @@ class Settings:
         self.screen_height = 800
         self.bg_color = (0,0,255)
         # Bar speed
-        self.bar_speed = 3
+        self.bar_speed = 10
