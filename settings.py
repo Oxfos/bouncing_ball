@@ -13,6 +13,5 @@ class Settings:
         self.bar_speed = 10
         # Ball settings
         self.ball_speed = 5
-        self.ball_width = 20
-        self.ball_height = 20
+        self.ball_radius = 15
         self.ball_color = (255,255,255)

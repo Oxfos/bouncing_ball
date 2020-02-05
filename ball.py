@@ -7,20 +7,17 @@ class Ball:
         """Initialize ball"""
         self.settings = bb_game.settings
         self.screen = bb_game.screen
+        self.radius = self.settings.ball_radius
         self.color = self.settings.ball_color
 
-        # Create ball at (0, 0)
-        self.rect = pygame.Rect(0, 0, self.settings.ball_width,
-            self.settings.ball_height)
-        self.rect.center = bb_game.screen.center
+        # Ball start position
+        self.pos_x = int(self.settings.screen_width/2)
+        self.pos_y = int(self.settings.screen_height/2)
+        self.pos = (self.pos_x, self.pos_y)
         
         # Store ball's position as a decimal value
-        self.x = float(self.rect.x)
-
-    # Movement
-    def update(self):
-        self.x += self.settings.ball_speed
-        self.rect.x = self.x
+        # self.x = float(self.rect.x)
 
     def draw_ball(self):
-        pygame.draw.rect(self.screen, self.color, self.rect)
+        pygame.draw.circle(self.screen, self.color, 
+            self.pos, self.radius)

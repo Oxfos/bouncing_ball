@@ -2,6 +2,7 @@ import sys
 import pygame
 from settings import Settings
 from bar import Bar
+from ball import Ball
 
 class BouncingBall:
     """Overall class to manage game assets and behavior."""
@@ -16,6 +17,7 @@ class BouncingBall:
         self.settings.screen_height = self.screen.get_rect().height
         pygame.display.set_caption("Bouncing Ball")
         self.bar = Bar(self)
+        self.ball = Ball(self)
 
     def run_game(self):
         """Main game loop."""
@@ -56,6 +58,7 @@ class BouncingBall:
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
         self.bar.blitme()
+        self.ball.draw_ball()
         pygame.display.flip()
 
 
