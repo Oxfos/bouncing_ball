@@ -11,3 +11,8 @@ class Settings:
         self.bg_color = (0,0,255)
         # Bar speed
         self.bar_speed = 10
+        # Ball settings
+        self.ball_speed = 5
+        self.ball_width = 20
+        self.ball_height = 20
+        self.ball_color = (255,255,255)
