@@ -44,7 +44,7 @@ class BouncingBall:
             self.bar.moving_right = True
         elif event.key == pygame.K_LEFT:
             self.bar.moving_left = True
-        elif event.key == pygame.K_q:
+        elif event.key == pygame.K_ESCAPE:
             sys.exit()
 
     def _check_keyup_events(self, event):
