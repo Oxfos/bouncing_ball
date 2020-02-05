@@ -15,9 +15,14 @@ class Ball:
         self.pos_y = int(self.settings.screen_height/2)
         self.pos = (self.pos_x, self.pos_y)
         
-        # Store ball's position as a decimal value
-        # self.x = float(self.rect.x)
+    def update(self):
+        """Update position"""
+        if self.pos_y >= 0:
+            self.pos_y -= int(self.settings.ball_speed)
+        if self.pos_x >= 0:
+            self.pos_x -= int(self.settings.ball_speed)
 
     def draw_ball(self):
+        """Draw the ball on the screen"""
         pygame.draw.circle(self.screen, self.color, 
-            self.pos, self.radius)
+            (self.pos_x, self.pos_y), self.radius)

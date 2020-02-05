@@ -24,6 +24,7 @@ class BouncingBall:
         while True:
             self._check_events()
             self.bar.update() # implements movement depending on movement flag
+            self.ball.update()
             self._update_screen()
 
     def _check_events(self):
