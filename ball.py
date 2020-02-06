@@ -14,7 +14,12 @@ class Ball:
         self.pos_x = int(self.settings.screen_width/2)
         self.pos_y = int(self.settings.screen_height/2)
         self.old_x = self.pos_x
-        
+        self.old_y = self.pos_y
+    
+    def start(self):
+        """Function to get ball rolling"""
+        pass
+
     def update(self):
         """Update x position"""
         if (self.pos_x - self.old_x) > 0:
@@ -29,6 +34,19 @@ class Ball:
                 self.pos_x -= int(self.settings.ball_speed)
             else:
                 self.pos_x += int(self.settings.ball_speed)
+        if (self.pos_y - self.old_y) < 0:
+            self.old_y = self.pos_y
+            if self.pos_y > 0:
+                self.pos_y -= self.settings.ball_speed
+            else:
+                self.pos_y += self.settings.ball_speed
+        else:
+            self.old_y = self.pos_y
+            if self.pos_y < self.settings.screen_height:
+                self.pos_y += self.settings.ball_speed
+            else:
+                self.pos_y -= self.settings.ball_speed
+
         
 
     def draw_ball(self):
