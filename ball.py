@@ -13,14 +13,23 @@ class Ball:
         # Ball start position
         self.pos_x = int(self.settings.screen_width/2)
         self.pos_y = int(self.settings.screen_height/2)
-        self.pos = (self.pos_x, self.pos_y)
+        self.old_x = self.pos_x
         
     def update(self):
-        """Update position"""
-        if self.pos_y >= 0:
-            self.pos_y -= int(self.settings.ball_speed)
-        if self.pos_x >= 0:
-            self.pos_x -= int(self.settings.ball_speed)
+        """Update x position"""
+        if (self.pos_x - self.old_x) > 0:
+            self.old_x = self.pos_x
+            if self.pos_x < self.settings.screen_width:
+                self.pos_x += int(self.settings.ball_speed)
+            else:
+                self.pos_x -= int(self.settings.ball_speed)
+        else:
+            self.old_x = self.pos_x
+            if self.pos_x > 0:
+                self.pos_x -= int(self.settings.ball_speed)
+            else:
+                self.pos_x += int(self.settings.ball_speed)
+        
 
     def draw_ball(self):
         """Draw the ball on the screen"""
