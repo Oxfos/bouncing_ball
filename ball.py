@@ -21,16 +21,21 @@ class Ball:
         print(self.old_x, self.old_y)
         
     def start(self):
-        """Function to get ball rolling randomly"""
-        self.old_x = randint(self.pos_x-5, self.pos_x+5)
-        self.old_y = randint(self.pos_y-5, self.pos_y+5)
+        """Function to get ball rolling randomly upon initiation."""
+        self.old_x = randint(self.pos_x-self.settings.ball_speed,
+         self.pos_x+self.settings.ball_speed)
+        self.old_y = randint(self.pos_y-self.settings.ball_speed,
+         self.pos_y+self.settings.ball_speed)
 
     def update(self):
-        """Update x position"""
+        """Updates ball position"""
+        # Get difference between new and old position
         dist_x = self.pos_x - self.old_x
         dist_y = self.pos_y - self.old_y        
+        # Update old position
         self.old_x = self.pos_x
         self.old_y = self.pos_y
+        # Update x position
         if dist_x > 0:
             if self.pos_x < self.settings.screen_width:
                 self.pos_x += abs(dist_x)
@@ -41,6 +46,7 @@ class Ball:
                 self.pos_x -= abs(dist_x)
             else:
                 self.pos_x += abs(dist_x)
+        # Update y position
         if dist_y < 0:
             if self.pos_y > 0:
                 self.pos_y -= abs(dist_y)
