@@ -10,6 +10,8 @@ class BouncingBall:
     def __init__(self):
         """Initialize the game, and create game resources."""
         pygame.init()
+        # Clock set-up for framerate
+        self.clock = pygame.time.Clock()
         self.settings = Settings()
         self.screen = pygame.display.set_mode((self.settings.screen_width,
             self.settings.screen_height))
@@ -61,6 +63,7 @@ class BouncingBall:
         self.bar.blitme()
         self.ball.draw_ball()
         pygame.display.flip()
+        self.clock.tick(400)
 
 
 if __name__ == '__main__':

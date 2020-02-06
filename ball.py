@@ -21,7 +21,7 @@ class Ball:
         print(self.old_x, self.old_y)
         
     def start(self):
-        """Function to get ball rolling randomly upon initiation."""
+        """Function to set rolling direction upon initiation."""
         self.old_x = randint(self.pos_x-self.settings.ball_speed,
          self.pos_x+self.settings.ball_speed)
         self.old_y = randint(self.pos_y-self.settings.ball_speed,
