@@ -1,4 +1,5 @@
 import pygame
+from random import randint
 
 class Ball:
     """Class to model a bouncing ball"""
@@ -13,12 +14,16 @@ class Ball:
         # Ball start position
         self.pos_x = int(self.settings.screen_width/2)
         self.pos_y = int(self.settings.screen_height/2)
-        self.old_x = self.pos_x
-        self.old_y = self.pos_y
     
+        # initialize old position
+        self.start = self.start()
+        print(self.pos_x, self.pos_y)
+        print(self.old_x, self.old_y)
+        
     def start(self):
-        """Function to get ball rolling"""
-        pass
+        """Function to get ball rolling randomly"""
+        self.old_x = randint(self.pos_x-50, self.pos_x+50)
+        self.old_y = randint(self.pos_y-50, self.pos_y+50)
 
     def update(self):
         """Update x position"""

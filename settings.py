@@ -10,7 +10,7 @@ class Settings:
         self.screen_height = 800
         self.bg_color = (0,0,255)
         # Bar speed
-        self.bar_speed = 10
+        self.bar_speed = 2
         # Ball settings
         self.ball_speed = 1
         self.ball_radius = 15
