@@ -22,35 +22,35 @@ class Ball:
         
     def start(self):
         """Function to get ball rolling randomly"""
-        self.old_x = randint(self.pos_x-50, self.pos_x+50)
-        self.old_y = randint(self.pos_y-50, self.pos_y+50)
+        self.old_x = randint(self.pos_x-5, self.pos_x+5)
+        self.old_y = randint(self.pos_y-5, self.pos_y+5)
 
     def update(self):
         """Update x position"""
-        if (self.pos_x - self.old_x) > 0:
-            self.old_x = self.pos_x
+        dist_x = self.pos_x - self.old_x
+        dist_y = self.pos_y - self.old_y        
+        self.old_x = self.pos_x
+        self.old_y = self.pos_y
+        if dist_x > 0:
             if self.pos_x < self.settings.screen_width:
-                self.pos_x += int(self.settings.ball_speed)
+                self.pos_x += abs(dist_x)
             else:
-                self.pos_x -= int(self.settings.ball_speed)
+                self.pos_x -= abs(dist_x)
         else:
-            self.old_x = self.pos_x
             if self.pos_x > 0:
-                self.pos_x -= int(self.settings.ball_speed)
+                self.pos_x -= abs(dist_x)
             else:
-                self.pos_x += int(self.settings.ball_speed)
-        if (self.pos_y - self.old_y) < 0:
-            self.old_y = self.pos_y
+                self.pos_x += abs(dist_x)
+        if dist_y < 0:
             if self.pos_y > 0:
-                self.pos_y -= self.settings.ball_speed
+                self.pos_y -= abs(dist_y)
             else:
-                self.pos_y += self.settings.ball_speed
+                self.pos_y += abs(dist_y)
         else:
-            self.old_y = self.pos_y
             if self.pos_y < self.settings.screen_height:
-                self.pos_y += self.settings.ball_speed
+                self.pos_y += abs(dist_y)
             else:
-                self.pos_y -= self.settings.ball_speed
+                self.pos_y -= abs(dist_y)
 
         
 
