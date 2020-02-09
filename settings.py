@@ -9,7 +9,8 @@ class Settings:
         self.screen_width = 1200
         self.screen_height = 800
         self.bg_color = (0,0,255)
-        # Bar speed
+        # Bar settings
+        self.bar_width = 150
         self.bar_speed = 3
         # Ball settings
         self.ball_speed = 2

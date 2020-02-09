@@ -66,7 +66,7 @@ class BouncingBall:
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
-        self.bar.blitme()
+        self.bar.draw_bar()
         self.ball.draw_ball()
         pygame.display.flip()
         self.clock.tick(400)
