@@ -26,6 +26,7 @@ class BouncingBall:
         while True:
             self._check_events()
             self.bar.update() # implements movement depending on movement flag
+            self._check_ball_bar_collision()
             self.ball.update()
             self._update_screen()
 
@@ -56,6 +57,11 @@ class BouncingBall:
             self.bar.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.bar.moving_left = False
+
+    def _check_ball_bar_collision(self):
+        if pygame.sprite.collide_rect(self.ball, self.bar):
+            print('Bounce!')
+            self.ball.bounce = True
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
