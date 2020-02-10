@@ -4,6 +4,7 @@ import pygame
 from settings import Settings
 from bar import Bar
 from ball import Ball
+from stats import GameStats
 
 class BouncingBall:
     """Overall class to manage game assets and behavior."""
@@ -14,6 +15,7 @@ class BouncingBall:
         # Clock set-up for framerate
         self.clock = pygame.time.Clock()
         self.settings = Settings()
+        self.stats = GameStats(self)
         self.screen = pygame.display.set_mode((self.settings.screen_width,
             self.settings.screen_height))
         self.settings.screen_width = self.screen.get_rect().width
@@ -26,9 +28,10 @@ class BouncingBall:
         """Main game loop."""
         while True:
             self._check_events()
-            self.bar.update() # implements movement depending on movement flag
-            self._ball_checks()
-            self.ball.update()
+            if self.stats.game_active:
+                self.bar.update() # implements movement depending on movement flag
+                self._ball_checks()
+                self.ball.update()
             self._update_screen()
 
     def _check_events(self):
@@ -61,20 +64,29 @@ class BouncingBall:
 
     def _ball_checks(self):
         self._check_ball_bar_collision()
-        self._check_ball_dropped()
+        self._check_ball_lost()
 
     def _check_ball_bar_collision(self):
         if pygame.sprite.collide_rect(self.ball, self.bar):
             print('Bounce!')
             self.ball.bounce = True
 
-    def _check_ball_dropped(self):
+    def _check_ball_lost(self):
         """Reset game if ball drops below bottom edge"""
         if self.ball.rect.top >= self.settings.screen_height:
+            self._ball_lost()
+
+    def _ball_lost(self):
+        """Take action if ball is lost"""
+        if self.settings.ball_limit > 0:
             self.ball.pos_x = int(self.settings.screen_width/2)
             self.ball.pos_y = int(self.settings.screen_height/2)
             self.ball._start()
+            self.settings.ball_limit -= 1
             sleep(0.5)
+        else:
+            self.stats.game_active = False
+
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""

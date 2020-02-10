@@ -16,3 +16,4 @@ class Settings:
         self.ball_speed = 2
         self.ball_radius = 15
         self.ball_color = (255,255,255)
+        self.ball_limit = 3
