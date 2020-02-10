@@ -18,14 +18,14 @@ class Ball:
             (self.pos_x, self.pos_y), self.radius)
     
         # initialize old position
-        self.start = self.start()
+        self.start = self._start()
         print(self.pos_x, self.pos_y)
         print(self.old_x, self.old_y)
 
         # Check ball-bar collisions
         self.bounce = False
         
-    def start(self):
+    def _start(self):
         """Function to set rolling direction upon ball instantiation."""
         self.old_x = randint(self.pos_x-self.settings.ball_speed,
          self.pos_x+self.settings.ball_speed)

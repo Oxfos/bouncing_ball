@@ -1,4 +1,5 @@
 import sys
+from time import sleep
 import pygame
 from settings import Settings
 from bar import Bar
@@ -26,7 +27,7 @@ class BouncingBall:
         while True:
             self._check_events()
             self.bar.update() # implements movement depending on movement flag
-            self._check_ball_bar_collision()
+            self._ball_checks()
             self.ball.update()
             self._update_screen()
 
@@ -58,10 +59,22 @@ class BouncingBall:
         elif event.key == pygame.K_LEFT:
             self.bar.moving_left = False
 
+    def _ball_checks(self):
+        self._check_ball_bar_collision()
+        self._check_ball_dropped()
+
     def _check_ball_bar_collision(self):
         if pygame.sprite.collide_rect(self.ball, self.bar):
             print('Bounce!')
             self.ball.bounce = True
+
+    def _check_ball_dropped(self):
+        """Reset game if ball drops below bottom edge"""
+        if self.ball.rect.top >= self.settings.screen_height:
+            self.ball.pos_x = int(self.settings.screen_width/2)
+            self.ball.pos_y = int(self.settings.screen_height/2)
+            self.ball._start()
+            sleep(0.5)
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
