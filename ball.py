@@ -66,6 +66,6 @@ class Ball:
                 self.pos_y += abs(dist_y)
 
     def draw_ball(self):
-        """Draw the ball on the screen and store new rect"""
+        """Draw the ball on the screen AND store new rect"""
         self.rect = pygame.draw.circle(self.screen, self.color, 
             (self.pos_x, self.pos_y), self.radius)
