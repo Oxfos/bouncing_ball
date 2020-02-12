@@ -64,11 +64,15 @@ class BouncingBall:
         """Restart game when Play button is clicked."""
         button_clicked = self.play_button.rect.collidepoint(mouse_pos)
         if button_clicked:
-            pygame.mouse.set_visible(False)
-            self.stats.reset_stats()
-            self.bar.center_bar()
-            self._restart_game()
-            self.stats.game_active = True
+            self._click_play()
+
+    def _click_play(self):
+        pygame.mouse.set_visible(False)
+        self.stats.reset_stats()
+        self.bar.center_bar()
+        self.ball._init_old_pos()
+        sleep(0.5)
+        self.stats.game_active = True
 
     def _check_keyup_events(self, event):
         """Checks keyup events."""
