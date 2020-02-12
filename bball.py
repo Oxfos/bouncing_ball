@@ -5,6 +5,7 @@ from settings import Settings
 from bar import Bar
 from ball import Ball
 from stats import GameStats
+from button import Button
 
 class BouncingBall:
     """Overall class to manage game assets and behavior."""
@@ -23,6 +24,7 @@ class BouncingBall:
         pygame.display.set_caption("Bouncing Ball")
         self.bar = Bar(self)
         self.ball = Ball(self)
+        self.play_button = Button(self, 'Play')
 
     def run_game(self):
         """Main game loop."""
@@ -45,6 +47,9 @@ class BouncingBall:
             # Releasing arrow keys:
             elif event.type == pygame.KEYUP:
                 self._check_keyup_events(event)
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_pos = pygame.mouse.get_pos()
+                self._check_play_button(mouse_pos)
 
     def _check_keydown_events(self, event):
         """Checks keydown events."""
@@ -54,6 +59,16 @@ class BouncingBall:
             self.bar.moving_left = True
         elif event.key == pygame.K_ESCAPE:
             sys.exit()
+
+    def _check_play_button(self, mouse_pos):
+        """Restart game when Play button is clicked."""
+        button_clicked = self.play_button.rect.collidepoint(mouse_pos)
+        if button_clicked:
+            pygame.mouse.set_visible(False)
+            self.stats.reset_stats()
+            self.bar.center_bar()
+            self._ball_lost()
+            self.stats.game_active = True
 
     def _check_keyup_events(self, event):
         """Checks keyup events."""
@@ -78,21 +93,21 @@ class BouncingBall:
 
     def _ball_lost(self):
         """Take action if ball is lost"""
-        if self.settings.ball_limit > 0:
-            self.ball.pos_x = int(self.settings.screen_width/2)
-            self.ball.pos_y = int(self.settings.screen_height/2)
+        if self.stats.ball_left > 0:
             self.ball._start()
-            self.settings.ball_limit -= 1
+            self.stats.ball_left -= 1
             sleep(0.5)
         else:
+            pygame.mouse.set_visible(True)
             self.stats.game_active = False
-
 
     def _update_screen(self):
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
         self.bar.draw_bar()
         self.ball.draw_ball()
+        if not self.stats.game_active:
+            self.play_button.draw_button()
         pygame.display.flip()
         self.clock.tick(400)
 

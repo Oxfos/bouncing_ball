@@ -10,23 +10,19 @@ class Ball:
         self.screen = bb_game.screen
         self.radius = self.settings.ball_radius
         self.color = self.settings.ball_color
-
-        # Ball start position
-        self.pos_x = int(self.settings.screen_width/2)
-        self.pos_y = int(self.settings.screen_height/2)
-        self.rect = pygame.draw.circle(self.screen, self.color, 
-            (self.pos_x, self.pos_y), self.radius)
     
         # initialize old position
-        self.start = self._start()
-        print(self.pos_x, self.pos_y)
-        print(self.old_x, self.old_y)
+        self._start()
 
         # Check ball-bar collisions
         self.bounce = False
         
     def _start(self):
         """Function to set rolling direction upon ball instantiation."""
+        self.pos_x = int(self.settings.screen_width/2)
+        self.pos_y = int(self.settings.screen_height/2)        # Assign Ball rect
+        self.rect = pygame.draw.circle(self.screen, self.color, 
+            (self.pos_x, self.pos_y), self.radius)
         self.old_x = randint(self.pos_x-self.settings.ball_speed,
          self.pos_x+self.settings.ball_speed)
         self.old_y = randint(self.pos_y-self.settings.ball_speed,
@@ -36,8 +32,7 @@ class Ball:
         """Updates ball position"""
         # Get difference between new and old position
         dist_x = self.pos_x - self.old_x
-        dist_y = self.pos_y - self.old_y    
-        # Calculate new    
+        dist_y = self.pos_y - self.old_y  
         # Update old position
         self.old_x = self.pos_x
         self.old_y = self.pos_y

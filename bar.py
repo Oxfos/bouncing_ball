@@ -15,13 +15,17 @@ class Bar(Sprite):
         self.rect = pygame.Rect(0,0, self.settings.bar_width, 7)
         
         # Start each new bar at the bottom center of the screen.
-        self.rect.midbottom = self.screen_rect.midbottom
+        self.center_bar()
 
         # Initializes movement flag
         self.moving_right = False
         self.moving_left = False
         # Convert rect.x to float
         self.x = float(self.rect.x)
+
+    def center_bar(self):
+        """Recenters the bar"""
+        self.rect.midbottom = self.screen_rect.midbottom
 
     def update(self):
         """Update bar position with moving flag"""
