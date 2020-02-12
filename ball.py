@@ -1,5 +1,5 @@
 import pygame
-from random import randint
+from random import choice
 from math import cos, sin, radians
 
 class Ball:
@@ -24,8 +24,9 @@ class Ball:
         self.pos_x = self.settings.ball_pos_x
         self.pos_y = self.settings.ball_pos_y
         # Old position depending on Theta and speed:
-        theta = randint(self.settings.ball_start_angle, 
-            self.settings.ball_end_angle)
+        angles_1 = list(range(self.settings.ball_start_angle, 89))
+        angles_2 = list(range(91, self.settings.ball_end_angle))
+        theta = choice(angles_1 + angles_2)
         self.old_x = self.settings.ball_speed * cos(radians(theta)) + self.pos_x
         self.old_y = self.settings.ball_speed * sin(radians(theta)) + self.pos_y
         print(self.old_x, self.old_y)
