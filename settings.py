@@ -11,7 +11,7 @@ class Settings:
         self.bg_color = (0,0,255)
         # Bar settings
         self.bar_width = 150
-        self.bar_speed = 3
+        self.bar_speed = 7
         # Ball settings
         self.ball_pos_x = int(self.screen_width/2)
         self.ball_pos_y = int(self.screen_height/2)
