@@ -33,34 +33,20 @@ class Ball:
     def update(self):
         """Updates ball position"""
         # Get difference between new and old position
-        dist_x = self.pos_x - self.old_x
-        dist_y = self.pos_y - self.old_y  
+        delta_x = self.pos_x - self.old_x
+        delta_y = self.pos_y - self.old_y  
         # Update old position
         self.old_x = self.pos_x
         self.old_y = self.pos_y
         # Update x position
-        if dist_x > 0:
-            if self.pos_x < self.settings.screen_width:
-                self.pos_x += abs(dist_x)
-            else:
-                self.pos_x -= abs(dist_x)
-        else:
-            if self.pos_x > 0:
-                self.pos_x -= abs(dist_x)
-            else:
-                self.pos_x += abs(dist_x)
+        if self.pos_x <= 0 or self.pos_x >= self.settings.screen_width:
+            delta_x *= -1
+        self.pos_x += delta_x
         # Update y position
-        if dist_y < 0:
-            if self.pos_y > 0:
-                self.pos_y -= abs(dist_y)
-            else:
-                self.pos_y += abs(dist_y)
-        else:
-            if self.bounce:
-                self.pos_y -= abs(dist_y)
-                self.bounce = False
-            else:
-                self.pos_y += abs(dist_y)
+        if self.pos_y <= 0 or self.bounce:
+            delta_y *= -1
+        self.pos_y += delta_y
+        self.bounce = False
 
     def draw_ball(self):
         """Draw the ball on the screen AND store new rect"""
