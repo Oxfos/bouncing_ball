@@ -109,7 +109,7 @@ class BouncingBall:
         if not self.stats.game_active:
             self.play_button.draw_button()
         pygame.display.flip()
-        self.clock.tick(400)
+        self.clock.tick(150)
 
 
 if __name__ == '__main__':

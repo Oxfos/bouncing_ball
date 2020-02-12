@@ -1,5 +1,6 @@
 import pygame
 from random import randint
+import math
 
 class Ball:
     """Class to model a bouncing ball"""
@@ -25,10 +26,16 @@ class Ball:
         self.rect = pygame.draw.circle(self.screen, self.color, 
             (self.pos_x, self.pos_y), self.radius)
         # Old position depending on Theta and speed:
-        self.old_x = randint(self.pos_x-self.settings.ball_speed,
-         self.pos_x+self.settings.ball_speed)
-        self.old_y = randint(self.pos_y-self.settings.ball_speed,
-         self.pos_y+self.settings.ball_speed)
+        theta = randint(1,179)
+        self.old_x = int(self.settings.ball_speed * math.cos(theta))\
+            + self.settings.ball_pos_x
+        # self.old_x = randint(self.pos_x-self.settings.ball_speed,
+        # self.pos_x+self.settings.ball_speed)
+        self.old_y = int(self.settings.ball_speed *math.sin(theta))\
+            + self.settings.ball_pos_y
+        #self.old_y = randint(self.pos_y-self.settings.ball_speed,
+        # self.pos_y+self.settings.ball_speed)
+        print(self.old_x, self.old_y)
 
     def update(self):
         """Updates ball position"""
