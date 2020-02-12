@@ -13,6 +13,8 @@ class Settings:
         self.bar_width = 150
         self.bar_speed = 3
         # Ball settings
+        self.ball_pos_x = int(self.screen_width/2)
+        self.ball_pos_y = int(self.screen_height/2)
         self.ball_speed = 2
         self.ball_radius = 15
         self.ball_color = (255,255,255)

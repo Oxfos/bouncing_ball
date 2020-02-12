@@ -19,10 +19,12 @@ class Ball:
         
     def _start(self):
         """Function to set rolling direction upon ball instantiation."""
-        self.pos_x = int(self.settings.screen_width/2)
-        self.pos_y = int(self.settings.screen_height/2)        # Assign Ball rect
+        # Starting position:
+        self.pos_x = self.settings.ball_pos_x
+        self.pos_y = self.settings.ball_pos_y
         self.rect = pygame.draw.circle(self.screen, self.color, 
             (self.pos_x, self.pos_y), self.radius)
+        # Old position depending on Theta and speed:
         self.old_x = randint(self.pos_x-self.settings.ball_speed,
          self.pos_x+self.settings.ball_speed)
         self.old_y = randint(self.pos_y-self.settings.ball_speed,
