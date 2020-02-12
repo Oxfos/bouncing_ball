@@ -1,6 +1,6 @@
 import pygame
 from random import randint
-import math
+from math import cos, sin, radians
 
 class Ball:
     """Class to model a bouncing ball"""
@@ -13,28 +13,21 @@ class Ball:
         self.color = self.settings.ball_color
     
         # initialize old position
-        self._start()
+        self._init_old_pos()
 
         # Check ball-bar collisions
         self.bounce = False
         
-    def _start(self):
+    def _init_old_pos(self):
         """Function to set rolling direction upon ball instantiation."""
         # Starting position:
         self.pos_x = self.settings.ball_pos_x
         self.pos_y = self.settings.ball_pos_y
-        self.rect = pygame.draw.circle(self.screen, self.color, 
-            (self.pos_x, self.pos_y), self.radius)
         # Old position depending on Theta and speed:
-        theta = randint(1,179)
-        self.old_x = int(self.settings.ball_speed * math.cos(theta))\
-            + self.settings.ball_pos_x
-        # self.old_x = randint(self.pos_x-self.settings.ball_speed,
-        # self.pos_x+self.settings.ball_speed)
-        self.old_y = int(self.settings.ball_speed *math.sin(theta))\
-            + self.settings.ball_pos_y
-        #self.old_y = randint(self.pos_y-self.settings.ball_speed,
-        # self.pos_y+self.settings.ball_speed)
+        theta = randint(self.settings.ball_start_angle, 
+            self.settings.ball_end_angle)
+        self.old_x = self.settings.ball_speed * cos(radians(theta)) + self.pos_x
+        self.old_y = self.settings.ball_speed * sin(radians(theta)) + self.pos_y
         print(self.old_x, self.old_y)
 
     def update(self):
@@ -72,4 +65,4 @@ class Ball:
     def draw_ball(self):
         """Draw the ball on the screen AND store new rect"""
         self.rect = pygame.draw.circle(self.screen, self.color, 
-            (self.pos_x, self.pos_y), self.radius)
+            (int(self.pos_x), int(self.pos_y)), self.radius)

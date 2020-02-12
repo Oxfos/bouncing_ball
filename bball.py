@@ -67,7 +67,7 @@ class BouncingBall:
             pygame.mouse.set_visible(False)
             self.stats.reset_stats()
             self.bar.center_bar()
-            self._ball_lost()
+            self._restart_game()
             self.stats.game_active = True
 
     def _check_keyup_events(self, event):
@@ -89,12 +89,12 @@ class BouncingBall:
     def _check_ball_lost(self):
         """Reset game if ball drops below bottom edge"""
         if self.ball.rect.top >= self.settings.screen_height:
-            self._ball_lost()
+            self._restart_game()
 
-    def _ball_lost(self):
+    def _restart_game(self):
         """Take action if ball is lost"""
         if self.stats.ball_left > 0:
-            self.ball._start()
+            self.ball._init_old_pos()
             self.stats.ball_left -= 1
             sleep(0.5)
         else:
