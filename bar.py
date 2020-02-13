@@ -20,12 +20,12 @@ class Bar(Sprite):
         # Initializes movement flag
         self.moving_right = False
         self.moving_left = False
-        # Convert rect.x to float
-        self.x = float(self.rect.x)
 
     def center_bar(self):
         """Recenters the bar"""
         self.rect.midbottom = self.screen_rect.midbottom
+        # Convert rect.x to float
+        self.x = float(self.rect.x)
 
     def update(self):
         """Update bar position with moving flag"""

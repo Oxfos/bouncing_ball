@@ -32,9 +32,9 @@ class BouncingBall:
             self._check_events()
             if self.stats.game_active:
                 self._ball_checks()
-                self._time_check(self.start)
                 self.ball.update()
-            self.bar.update() # implements movement depending on movement flag
+                self.bar.update() # implements movement depending on movement flag
+                self._time_check(self.start)
             self._update_screen()
 
     def _check_events(self):
@@ -71,8 +71,8 @@ class BouncingBall:
         pygame.mouse.set_visible(False)
         self.stats.reset_stats()
         self.bar.center_bar()
+        self.settings.initialize_settings()
         self.ball._init_old_pos()
-        sleep(0.5)
         self.stats.game_active = True
         self.start = perf_counter()
 
