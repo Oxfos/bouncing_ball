@@ -40,11 +40,12 @@ class Ball:
         self.old_x = self.pos_x
         self.old_y = self.pos_y
         # Update x position
-        if self.pos_x <= 0 or self.pos_x >= self.settings.screen_width:
+        if self.pos_x <= (0 + self.settings.ball_radius) or \
+            self.pos_x >= (self.settings.screen_width - self.settings.ball_radius):
             delta_x *= -1
         self.pos_x += delta_x
         # Update y position
-        if self.pos_y <= 0 or self.bounce:
+        if self.pos_y <= (0 + self.settings.ball_radius) or self.bounce:
             delta_y *= -1
         self.pos_y += delta_y
         self.bounce = False
