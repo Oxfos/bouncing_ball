@@ -53,4 +53,4 @@ class Ball:
     def draw_ball(self):
         """Draw the ball on the screen AND store new rect"""
         self.rect = pygame.draw.circle(self.screen, self.color, 
-            (int(self.pos_x), int(self.pos_y)), self.radius)
+            (int(self.pos_x), int(self.pos_y)), int(self.settings.ball_radius))

@@ -1,3 +1,5 @@
+from time import perf_counter
+
 class GameStats:
     """Game statistics"""
 
@@ -10,3 +12,8 @@ class GameStats:
 
     def reset_stats(self):
         self.ball_left = self.settings.ball_left
+
+    def time_elapsed(self, start):
+        """Checks the elapsed time since start playing."""
+        if perf_counter() - start >= self.settings.session_duration:
+            return True  

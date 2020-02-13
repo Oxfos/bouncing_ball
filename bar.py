@@ -33,8 +33,10 @@ class Bar(Sprite):
             self.x += self.settings.bar_speed
         if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.bar_speed
-        # REconcerts self.x to self.rect.x
+        # Reconverts self.x to self.rect.x
         self.rect.x = self.x
+        # Updating bar width
+        self.rect.width = self.settings.bar_width
 
     def draw_bar(self):
         """Draw the ball at its current location."""

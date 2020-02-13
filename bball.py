@@ -1,5 +1,5 @@
 import sys
-from time import sleep
+from time import sleep, perf_counter
 import pygame
 from settings import Settings
 from bar import Bar
@@ -32,6 +32,7 @@ class BouncingBall:
             self._check_events()
             if self.stats.game_active:
                 self._ball_checks()
+                self._time_check(self.start)
                 self.ball.update()
             self.bar.update() # implements movement depending on movement flag
             self._update_screen()
@@ -73,6 +74,7 @@ class BouncingBall:
         self.ball._init_old_pos()
         sleep(0.5)
         self.stats.game_active = True
+        self.start = perf_counter()
 
     def _check_keyup_events(self, event):
         """Checks keyup events."""
@@ -94,6 +96,12 @@ class BouncingBall:
         """Reset game if ball drops below bottom edge"""
         if self.ball.rect.top >= self.settings.screen_height:
             self._restart_game()
+
+    def _time_check(self, start):
+        """Increase game difficulty if session duration has elapsed."""
+        if self.stats.time_elapsed(start):
+            self.start = perf_counter()
+            self.settings.increase_game_difficulty()
 
     def _restart_game(self):
         """Take action if ball is lost"""
