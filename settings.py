@@ -21,3 +21,17 @@ class Settings:
         self.ball_radius = 15
         self.ball_color = (255,255,255)
         self.ball_left = 3
+        # Game increase difficulty factor
+        self.difficulty_factor = 1.1
+
+    def initialize_settings(self):
+        """Initialize game difficulty parameters."""
+        self.ball_radius = 15
+        self.ball_speed = 3
+        self.bar_width = 150
+
+    def increase_game_difficulty(self):
+        """Increase game difficulty."""
+        self.ball_radius /= self.difficulty_factor
+        self.ball_speed *= self.difficulty_factor
+        self.bar_width /= self.difficulty_factor
