@@ -1,3 +1,5 @@
+from time import perf_counter
+
 class Settings:
     """
     Class to define game's settings
@@ -21,7 +23,8 @@ class Settings:
         self.ball_radius = 15
         self.ball_color = (255,255,255)
         self.ball_left = 3
-        # Game increase difficulty factor
+        # Game factors
+        self.session_duration = 30
         self.difficulty_factor = 1.1
 
     def initialize_settings(self):
@@ -35,3 +38,8 @@ class Settings:
         self.ball_radius /= self.difficulty_factor
         self.ball_speed *= self.difficulty_factor
         self.bar_width /= self.difficulty_factor
+
+    def time_elapsed(self, start):
+        """Checks the elapsed time since start."""
+        if perf_counter() - start == 30:
+            return True
