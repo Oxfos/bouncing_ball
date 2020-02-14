@@ -6,6 +6,7 @@ from bar import Bar
 from ball import Ball
 from stats import GameStats
 from button import Button
+from time_bar import TimeBar
 
 class BouncingBall:
     """Overall class to manage game assets and behavior."""
@@ -24,6 +25,7 @@ class BouncingBall:
         pygame.display.set_caption("Bouncing Ball")
         self.bar = Bar(self)
         self.ball = Ball(self)
+        self.timebar = TimeBar(self)
         self.play_button = Button(self, 'Play')
 
     def run_game(self):
@@ -117,6 +119,7 @@ class BouncingBall:
         """Update images on the screen, and flip to the new screen."""
         self.screen.fill(self.settings.bg_color)
         self.bar.draw_bar()
+        self.timebar.draw_timebar()
         self.ball.draw_ball()
         if not self.stats.game_active:
             self.play_button.draw_button()

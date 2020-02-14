@@ -22,6 +22,10 @@ class Settings:
         self.ball_radius = 15
         self.ball_color = (255,255,255)
         self.ball_left = 3
+        # TimeBar settings
+        self.timebar_width = 150
+        self.timebar_hight = 20
+        self.timebar_color = (255, 255, 255)
         # Game factors
         self.session_duration = 10
         self.difficulty_factor = 1.2
