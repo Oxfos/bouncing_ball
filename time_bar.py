@@ -20,8 +20,8 @@ class TimeBar:
         session_time = game.settings.session_duration
         if perf_counter() - game.start_int >= session_time/100:
             game.start_int = perf_counter()
-            if game.timebar.rect.width >= 0:
-                game.timebar.rect.width -= self.settings.timebar_width/100
+            game.timebar.rect.width -= self.settings.timebar_width/100
+            print(game.timebar.rect.width)
 
     def reset_bar(self):
         self.rect.width = self.settings.timebar_width
