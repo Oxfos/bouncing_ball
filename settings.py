@@ -27,7 +27,7 @@ class Settings:
         self.timebar_hight = 20
         self.timebar_color = (255, 255, 255)
         # Game factors
-        self.session_duration = 10
+        self.session_duration = 5
         self.difficulty_factor = 1.2
 
     def initialize_settings(self):

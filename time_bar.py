@@ -5,6 +5,7 @@ class TimeBar:
     """Time bar indicating remaining session time."""
     def __init__(self, bb_game):
         self.settings = bb_game.settings
+        self.stats = bb_game.stats
         self.screen = bb_game.screen
         self.hight = self.settings.timebar_hight
         self.color = self.settings.timebar_color
@@ -14,11 +15,16 @@ class TimeBar:
         self.rect = pygame.Rect(self.x, self.y, self.settings.timebar_width,
              self.settings.timebar_hight)
 
-    def update(self, bb_game):
-        """Updates the timebar length every second."""
-        session_time = self.settings.session_duration
-        if perf_counter() - bb_game.start >= session_time/10:
-            bb_game.timebar.rect.width -= self.settings.timebar_width/100
+    def update(self, game):
+        #Updates the timebar length.
+        session_time = game.settings.session_duration
+        if perf_counter() - game.start_int >= session_time/100:
+            game.start_int = perf_counter()
+            if game.timebar.rect.width >= 0:
+                game.timebar.rect.width -= self.settings.timebar_width/100
+
+    def reset_bar(self):
+        self.rect.width = self.settings.timebar_width
 
     def draw_timebar(self):
         """Draws the time-bar."""

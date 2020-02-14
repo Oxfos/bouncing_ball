@@ -36,8 +36,8 @@ class BouncingBall:
                 self._ball_checks()
                 self.ball.update()
                 self.bar.update() # implements movement depending on movement flag
-                self._time_check(self.start)
                 self.timebar.update(self)
+                self._time_check(self.start)
             self._update_screen()
 
     def _check_events(self):
@@ -78,6 +78,7 @@ class BouncingBall:
         self.ball._init_old_pos()
         self.stats.game_active = True
         self.start = perf_counter()
+        self.start_int = perf_counter()
 
     def _check_keyup_events(self, event):
         """Checks keyup events."""
@@ -102,8 +103,9 @@ class BouncingBall:
 
     def _time_check(self, start):
         """Increase game difficulty if session duration has elapsed."""
-        if self.stats.time_elapsed(start):
+        if perf_counter() - start >= self.settings.session_duration:
             self.start = perf_counter()
+            self.timebar.reset_bar()
             self.settings.increase_game_difficulty()
 
     def _restart_game(self):
