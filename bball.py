@@ -70,8 +70,8 @@ class BouncingBall:
     def _click_play(self):
         pygame.mouse.set_visible(False)
         self.stats.reset_stats()
-        self.bar.center_bar()
         self.settings.initialize_settings()
+        self.bar.center_bar()
         self.ball._init_old_pos()
         self.stats.game_active = True
         self.start = perf_counter()

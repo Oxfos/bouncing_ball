@@ -23,6 +23,9 @@ class Bar(Sprite):
 
     def center_bar(self):
         """Recenters the bar"""
+        # Updating bar width
+        self.rect.width = self.settings.bar_width
+        # Centering the bar
         self.rect.midbottom = self.screen_rect.midbottom
         # Convert rect.x to float
         self.x = float(self.rect.x)
