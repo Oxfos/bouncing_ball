@@ -16,4 +16,4 @@ class GameStats:
     def time_elapsed(self, start):
         """Checks the elapsed time since start playing."""
         if perf_counter() - start >= self.settings.session_duration:
-            return True  
+            return True 

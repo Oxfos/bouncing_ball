@@ -15,9 +15,9 @@ class Settings:
         # Ball settings
         self.ball_pos_x = int(self.screen_width/2)
         self.ball_pos_y = int(self.screen_height/2)
-        self.ball_start_angle = 88 # between 1 and 88
-        self.ball_end_angle = 92 # between 92 and 179
-        self.ball_speed = 3
+        self.ball_start_angle = 5 # between 1 and 88
+        self.ball_end_angle = 175 # between 92 and 179
+        self.ball_speed = 2
         self.ball_extra_move = 1
         self.ball_radius = 15
         self.ball_color = (255,255,255)
