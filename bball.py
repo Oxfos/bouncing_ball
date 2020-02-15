@@ -78,7 +78,6 @@ class BouncingBall:
         self.ball._init_old_pos()
         self.stats.game_active = True
         self.start = perf_counter()
-        self.start_int = perf_counter()
 
     def _check_keyup_events(self, event):
         """Checks keyup events."""
@@ -105,7 +104,6 @@ class BouncingBall:
         """Increase game difficulty if session duration has elapsed."""
         if perf_counter() - start >= self.settings.session_duration:
             self.start = perf_counter()
-            self.timebar.reset_bar()
             self.settings.increase_game_difficulty()
 
     def _restart_game(self):

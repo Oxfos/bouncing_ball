@@ -18,13 +18,10 @@ class TimeBar:
     def update(self, game):
         #Updates the timebar length.
         session_time = game.settings.session_duration
-        if perf_counter() - game.start_int >= session_time/100:
-            game.start_int = perf_counter()
-            game.timebar.rect.width -= self.settings.timebar_width/100
-            print(game.timebar.rect.width)
-
-    def reset_bar(self):
-        self.rect.width = self.settings.timebar_width
+        remaining = session_time - (perf_counter() - game.start)
+        game.timebar.rect.width = remaining/session_time \
+            * self.settings.timebar_width
+        print(remaining/session_time*self.settings.timebar_width)
 
     def draw_timebar(self):
         """Draws the time-bar."""
