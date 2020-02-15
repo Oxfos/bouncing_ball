@@ -29,7 +29,6 @@ class Ball:
         theta = choice(angles_1 + angles_2)
         self.old_x = self.settings.ball_speed * cos(radians(theta)) + self.pos_x
         self.old_y = self.settings.ball_speed * sin(radians(theta)) + self.pos_y
-        print(self.old_x, self.old_y)
 
     def update(self):
         """Updates ball position"""

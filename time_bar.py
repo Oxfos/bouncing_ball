@@ -21,7 +21,6 @@ class TimeBar:
         remaining = session_time - (perf_counter() - game.start)
         game.timebar.rect.width = remaining/session_time \
             * self.settings.timebar_width
-        print(remaining/session_time*self.settings.timebar_width)
 
     def draw_timebar(self):
         """Draws the time-bar."""
